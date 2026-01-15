@@ -1,0 +1,7 @@
+ID_Paciente,DNI,Nombre,Primer_Apellido,Segundo_Apellido,Fecha_Nacimiento,Sexo,Grupo_Sanguineo,Numero_Telefono,Direccion,Correo_Electronico
+1,22334455B,Pedro,Gomez,Ruiz,1985-07-23,Masculino,B-,600333444,Avenida Norte 12,pedro@example.com
+2,55667788C,Lucia,Martinez,Garcia,1992-05-15,Femenino,O+,600555666,Calle del Sol 21,lucia@example.com
+3,66778899D,Carlos,Ramirez,Torres,1988-11-30,Masculino,AB+,600777888,Avenida Central 78,carlos@example.com
+4,77889900E,Marta,Hernandez,Lopez,1995-03-08,Femenino,A-,600999000,Calle Nueva 10,marta@example.com
+5,88990011F,Javier,Perez,Sanchez,1983-09-20,Masculino,B+,601111222,Avenida Este 34,javier@example.com
+6,99001122G,Elena,Gomez,Martin,1991-12-12,Femenino,O-,601333444,Calle del Rio 7,elena@example.com
