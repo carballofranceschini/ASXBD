@@ -1,3 +1,4 @@
+--Añado línea como prueba para actualizar cambios con Git
 --Usamos la base de datos Laboratorio_Analisis_Clinicos
 USE Laboratorio_Analisis_Clinicos;
 GO
