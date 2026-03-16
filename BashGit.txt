@@ -1,0 +1,242 @@
+maqui@ASXBD_LCF MINGW64 ~ /* Para saber la versión que estamos utilizando */
+$ git --version
+git version 2.52.0.windows.1
+
+maqui@ASXBD_LCF MINGW64 ~ /* Ver el directorio actual */
+$ pwd
+/c/Users/maqui
+
+maqui@ASXBD_LCF MINGW64 ~ /* Movernos al directorio anterior */
+$ cd ..
+
+maqui@ASXBD_LCF MINGW64 /c/Users
+$ cd ..
+
+maqui@ASXBD_LCF MINGW64 /c /* Crear una nueva carpeta */
+$ mkdir gittarea2
+
+maqui@ASXBD_LCF MINGW64 /c /* Movernos a la carpeta especificada */
+$ cd gittarea2
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 /* Crear un nuevo repositorio local */
+$ git init
+Initialized empty Git repository in C:/gittarea2/.git/
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Ver los archivos del directorio (incluyendo los ocultos) */
+$ ls -a
+./   .git/          Script_1_Cadena_de_propiedad.sql  Script_2_Cursores.sql       Script_4_Importar_Exportar_Imagenes.sql
+../  Pacientes.txt  Script_2_Backup.sql               Script_3_Transacciones.sql
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Establecemos nombre de usuario */
+$ git config --global user.name "carballofranceschini"
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Establecemos correo electrónico */
+$ git config --global user.email laura.cfran96@gmail.com
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Comprobamos nombre de usuario */
+$ git config user.name
+carballofranceschini
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Para ver la configuración de Git */
+$ git config --list
+diff.astextplain.textconv=astextplain
+filter.lfs.clean=git-lfs clean -- %f
+filter.lfs.smudge=git-lfs smudge -- %f
+filter.lfs.process=git-lfs filter-process
+filter.lfs.required=true
+http.sslbackend=schannel
+core.autocrlf=true
+core.fscache=true
+core.symlinks=false
+core.editor="C:\\Program Files\\Notepad++\\notepad++.exe" -multiInst -notabbar -nosession -noPlugin
+pull.rebase=false
+credential.helper=manager
+credential.https://dev.azure.com.usehttppath=true
+init.defaultbranch=master
+user.name=carballofranceschini
+user.email=laura.cfran96@gmail.com
+core.repositoryformatversion=0
+core.filemode=false
+core.bare=false
+core.logallrefupdates=true
+core.symlinks=false
+core.ignorecase=true
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Para cambiar el editor por defecto de Git al bloc de notas */
+$ git config --global core.editor "notepad"
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Para abrir el archivo de configuración global de Git */
+$ git config --global --edit
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Para abrir Notepad ++ */
+$ start notepad++
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Para abrir el bloc de notas */
+$ start notepad
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Para ver el estado de los archivos */
+$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Pacientes.txt
+        Script_1_Cadena_de_propiedad.sql
+        Script_2_Backup.sql
+        Script_2_Cursores.sql
+        Script_3_Transacciones.sql
+        Script_4_Importar_Exportar_Imagenes.sql
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Para añadir los archivos al staging area */
+$ git add .
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master)
+$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   Pacientes.txt
+        new file:   Script_1_Cadena_de_propiedad.sql
+        new file:   Script_2_Backup.sql
+        new file:   Script_2_Cursores.sql
+        new file:   Script_3_Transacciones.sql
+        new file:   Script_4_Importar_Exportar_Imagenes.sql
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Para quitar archivos del staging area */
+$ git rm --cached Pacientes.txt
+rm 'Pacientes.txt'
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master)
+$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   Script_1_Cadena_de_propiedad.sql
+        new file:   Script_2_Backup.sql
+        new file:   Script_2_Cursores.sql
+        new file:   Script_3_Transacciones.sql
+        new file:   Script_4_Importar_Exportar_Imagenes.sql
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        Pacientes.txt
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master)
+$ git add Pacientes.txt
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master)
+$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   Pacientes.txt
+        new file:   Script_1_Cadena_de_propiedad.sql
+        new file:   Script_2_Backup.sql
+        new file:   Script_2_Cursores.sql
+        new file:   Script_3_Transacciones.sql
+        new file:   Script_4_Importar_Exportar_Imagenes.sql
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Para hacer el primer commit */
+$ git commit -m "Primera prueba para el proyecto"
+[master (root-commit) 76f4787] Primera prueba para el proyecto
+ 6 files changed, 813 insertions(+)
+ create mode 100644 Pacientes.txt
+ create mode 100644 Script_1_Cadena_de_propiedad.sql
+ create mode 100644 Script_2_Backup.sql
+ create mode 100644 Script_2_Cursores.sql
+ create mode 100644 Script_3_Transacciones.sql
+ create mode 100644 Script_4_Importar_Exportar_Imagenes.sql
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Para subirlo al repositorio de GitHub */
+$ git remote add origin https://github.com/carballofranceschini/ASXBD.git
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Para mostrar los repositorios remotos que tenemos configurados y las URLs asociadas */
+$ git remote -v
+origin  https://github.com/carballofranceschini/ASXBD.git (fetch)
+origin  https://github.com/carballofranceschini/ASXBD.git (push)
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Para sincronizar lo que tenemos en local con lo que tenemos en remoto. Si no tenemos la sesión iniciada nos pedirá credenciales para iniciarla */
+$ git push -u origin master
+info: please complete authentication in your browser...
+Enumerating objects: 8, done.
+Counting objects: 100% (8/8), done.
+Delta compression using up to 2 threads
+Compressing objects: 100% (8/8), done.
+Writing objects: 100% (8/8), 12.02 KiB | 6.01 MiB/s, done.
+Total 8 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://github.com/carballofranceschini/ASXBD.git
+ * [new branch]      master -> master
+branch 'master' set up to track 'origin/master'.
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Para abrir el archivo sobre el que queremos hacer algún cambio */
+$ nano Script_1_Cadena_de_propiedad.sql
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Comprobamos estado para que muestre la modificación */
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   Script_1_Cadena_de_propiedad.sql
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Añadimos el archivo */
+$ git add Script_1_Cadena_de_propiedad.sql
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master)
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   Script_1_Cadena_de_propiedad.sql
+
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Commit para guardar los cambios realizados */
+$ git commit -m "Actualizo script 1 como prueba"
+[master 0b5c0b9] Actualizo script 1 como prueba
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Actualizamos repositorio remoto */
+$ git push -u origin master
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 2 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 368 bytes | 368.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/carballofranceschini/ASXBD.git
+   76f4787..0b5c0b9  master -> master
+branch 'master' set up to track 'origin/master'.
+
