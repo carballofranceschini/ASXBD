@@ -1,3 +1,5 @@
+Comandos utilizados para la tarea de Git
+
 maqui@ASXBD_LCF MINGW64 ~ /* Para saber la versión que estamos utilizando */
 $ git --version
 git version 2.52.0.windows.1
