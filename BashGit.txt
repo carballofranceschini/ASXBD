@@ -1,5 +1,3 @@
-Comandos utilizados para la tarea de Git
-
 maqui@ASXBD_LCF MINGW64 ~ /* Para saber la versión que estamos utilizando */
 $ git --version
 git version 2.52.0.windows.1
@@ -242,3 +240,600 @@ To https://github.com/carballofranceschini/ASXBD.git
    76f4787..0b5c0b9  master -> master
 branch 'master' set up to track 'origin/master'.
 
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Comprobamos en qué rama estamos */
+$ git branch
+* master
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Creamos una nueva rama llamada “NuevaRama */
+$ git branch NuevaRama
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Para ver las ramas locales */
+$ git show-branch
+! [NuevaRama] Actualizo script 1 como prueba
+ * [master] Actualizo script 1 como prueba
+--
++* [NuevaRama] Actualizo script 1 como prueba
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Para movernos a la nueva rama */
+$ git checkout NuevaRama
+Switched to branch 'NuevaRama'
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (NuevaRama) /* Comprobamos el estado */
+$ git status
+On branch NuevaRama
+nothing to commit, working tree clean
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (NuevaRama) /* Meto el archivo “BashGit” en la carpeta y vuelvo a comprobar el estado */
+$ git status
+On branch NuevaRama
+Untracked files:
+
+  (use "git add <file>..." to include in what will be committed)
+        BashGit.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (NuevaRama) /* Lo añado */
+$ git add .
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (NuevaRama) /* Compruebo estado de nuevo */
+$ git status
+On branch NuevaRama
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   BashGit.txt
+
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (NuevaRama) /* Creo un commit */
+$ git commit -m "Primer commit NuevaRama con documento bash"
+[NuevaRama 650d18d] Primer commit NuevaRama con documento bash
+ 1 file changed, 242 insertions(+)
+ create mode 100644 BashGit.txt
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (NuevaRama)
+$ git status
+On branch NuevaRama
+nothing to commit, working tree clean
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (NuevaRama) /* Volvemos a la rama master */
+$ git checkout master
+Switched to branch 'master'
+Your branch is up to date with 'origin/master'.
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) 
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Fusionamos las ramas */
+$ git merge NuevaRama
+Updating 0b5c0b9..650d18d
+Fast-forward
+ BashGit.txt | 242 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 242 insertions(+)
+ create mode 100644 BashGit.txt
+
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Comprobamos los commits */
+$ git log --oneline
+
+650d18d (HEAD -> master, NuevaRama) Primer commit NuevaRama con documento bash
+0b5c0b9 (origin/master) Actualizo script 1 como prueba
+76f4787 Primera prueba para el proyecto
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Comprobamos el registro */
+$ git reflog
+650d18d (HEAD -> master, NuevaRama) HEAD@{0}: merge NuevaRama: Fast-forward
+0b5c0b9 (origin/master) HEAD@{1}: checkout: moving from NuevaRama to master
+650d18d (HEAD -> master, NuevaRama) HEAD@{2}: commit: Primer commit NuevaRama con documento bash
+0b5c0b9 (origin/master) HEAD@{3}: checkout: moving from master to NuevaRama
+0b5c0b9 (origin/master) HEAD@{4}: commit: Actualizo script 1 como prueba
+76f4787 HEAD@{5}: commit (initial): Primera prueba para el proyecto
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Listamos repositorios remotos */
+$ git remote -v
+origin  https://github.com/carballofranceschini/ASXBD.git (fetch)
+origin  https://github.com/carballofranceschini/ASXBD.git (push)
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Da error porque ya existe un repositorio con ese nombre */
+$ git remote add origin https://github.com/carballofranceschini/ASXBD.git
+error: remote origin already exists.
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Subimos la rama local al repositorio remoto */
+$ git push -u origin NuevaRama
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 2 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 2.45 KiB | 837.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+remote:
+remote: Create a pull request for 'NuevaRama' on GitHub by visiting:
+remote:      https://github.com/carballofranceschini/ASXBD/pull/new/NuevaRama
+remote:
+To https://github.com/carballofranceschini/ASXBD.git
+ * [new branch]      NuevaRama -> NuevaRama
+branch 'NuevaRama' set up to track 'origin/NuevaRama'.
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Borramos la rama */
+$ git branch -d NuevaRama
+Deleted branch NuevaRama (was 650d18d).
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Comprobamos en qué rama estamos */
+$ git branch
+* master
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Le añado una línea al archivo BashGit */
+$ start notepad BashGit.txt
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Pruebo el comando git diff para ver las diferencias entre los archivos */
+$ git diff
+diff --git a/BashGit.txt b/BashGit.txt
+index 6e2979a..22a3a17 100644
+--- a/BashGit.txt
++++ b/BashGit.txt
+@@ -1,3 +1,5 @@
++Comandos utilizados para la tarea de Git
++
+ maqui@ASXBD_LCF MINGW64 ~ /* Para saber la versión que estamos utilizando */
+ $ git --version
+ git version 2.52.0.windows.1
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Creo el archivo .gitignore e indico que no quiero que aparezcan ni archivos .json ni archivos .bak */
+$ start notepad .gitignore
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master)
+$ git add .
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   .gitignore
+        modified:   BashGit.txt
+
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master) /* Hacemos un commit indicando los cambios */
+$ git commit -m "Archivo .gitignore y cambio de prueba en el archivo BashGit.txt para utilizar git diff"
+[master 21624e5] Archivo .gitignore y cambio de prueba en el archivo BashGit.txt para utilizar git diff
+ 2 files changed, 4 insertions(+)
+ create mode 100644 .gitignore
+
+maqui@ASXBD_LCF MINGW64 /c/gittarea2 (master)
+$ cd ..
+
+maqui@ASXBD_LCF MINGW64 /c /* Creamos un nuevo repositorio en la carpeta C:\revertreset */
+$ git init revertreset
+Initialized empty Git repository in C:/revertreset/.git/
+
+maqui@ASXBD_LCF MINGW64 /c /*Nos movemos al directorio */
+$ cd revertreset
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master) /* Vemos el estado */
+$ git status
+On branch master
+
+No commits yet
+
+nothing to commit (create/copy files and use "git add" to track)
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master) /* Creamos un nuevo archivo .txt */
+$ nano texto1
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        texto1
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master) /* Añadimos el archivo */
+$ git add .
+warning: in the working copy of 'texto1', LF will be replaced by CRLF the next times it
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master) /* Hacemos commit */
+$ git commit -m "texto1"
+[master (root-commit) cf925f9] texto1
+ 1 file changed, 1 insertion(+)
+ create mode 100644 texto1
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master) /* Vemos los registros */
+$ git log
+commit cf925f96dbbab544f520c2a91112168d96c34b94 (HEAD -> master)
+Author: carballofranceschini <laura.cfran96@gmail.com>
+Date:   Mon Mar 16 12:03:45 2026 +0100
+
+    texto1
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master) /* A continuación repetimos el proceso creado dos archivos más */
+$ nano texto2
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ git add .
+warning: in the working copy of 'texto2', LF will be replaced by CRLF the next times it
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ git commit -m "texto2"
+[master 8bc0ff1] texto2
+ 1 file changed, 1 insertion(+)
+ create mode 100644 texto2
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ git log
+commit 8bc0ff1beb205a8889b0f8e70e41c7e51c81714b (HEAD -> master)
+Author: carballofranceschini <laura.cfran96@gmail.com>
+Date:   Mon Mar 16 12:05:57 2026 +0100
+
+    texto2
+
+commit cf925f96dbbab544f520c2a91112168d96c34b94
+Author: carballofranceschini <laura.cfran96@gmail.com>
+Date:   Mon Mar 16 12:03:45 2026 +0100
+
+    texto1
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ nano texto3
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ git add .
+warning: in the working copy of 'texto3', LF will be replaced by CRLF the next times it
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ git commit -m "texto3"
+[master 29c2925] texto3
+ 1 file changed, 1 insertion(+)
+ create mode 100644 texto3
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ git log
+commit 29c292587748bd6a38ce5f4fe3859f28adca2812 (HEAD -> master)
+Author: carballofranceschini <laura.cfran96@gmail.com>
+Date:   Mon Mar 16 12:08:10 2026 +0100
+
+    texto3
+
+commit 8bc0ff1beb205a8889b0f8e70e41c7e51c81714b
+Author: carballofranceschini <laura.cfran96@gmail.com>
+Date:   Mon Mar 16 12:05:57 2026 +0100
+
+    texto2
+
+commit cf925f96dbbab544f520c2a91112168d96c34b94
+Author: carballofranceschini <laura.cfran96@gmail.com>
+Date:   Mon Mar 16 12:03:45 2026 +0100
+
+    texto1
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master) /* Listamos los archivos del directorio */
+$ ls
+texto1  texto2  texto3
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master) /* Al no especificar nada, se borran todos los cambios no guardados desde el último commit */
+$ git reset --hard
+HEAD is now at 29c2925 texto3
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master) /* Para ver los logs de línea en línea */
+$ git log --oneline
+29c2925 (HEAD -> master) texto3
+8bc0ff1 texto2
+cf925f9 texto1
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master) /* Hacemos un reset hasta el primer archivo */
+$ git reset --hard cf925f9
+HEAD is now at cf925f9 texto1
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ git log --oneline
+cf925f9 (HEAD -> master) texto1
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ git reflog
+cf925f9 (HEAD -> master) HEAD@{0}: reset: moving to cf925f9
+29c2925 HEAD@{1}: reset: moving to HEAD
+29c2925 HEAD@{2}: commit: texto3
+8bc0ff1 HEAD@{3}: commit: texto2
+cf925f9 (HEAD -> master) HEAD@{4}: commit (initial): texto1
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ ls
+texto1
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master) /* Volvemos a crear los archivos de texto 2 y 3 */
+$ start notepad texto2
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ start notepad texto3
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ git add .
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ git commit -m "textos 2 y 3"
+[master 99866b5] textos 2 y 3
+ 2 files changed, 2 insertions(+)
+ create mode 100644 texto2.txt
+ create mode 100644 texto3.txt
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ git log --oneline
+99866b5 (HEAD -> master) textos 2 y 3
+cf925f9 texto1
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ git reflog
+99866b5 (HEAD -> master) HEAD@{0}: commit: textos 2 y 3
+cf925f9 HEAD@{1}: reset: moving to cf925f9
+29c2925 HEAD@{2}: reset: moving to HEAD
+29c2925 HEAD@{3}: commit: texto3
+8bc0ff1 HEAD@{4}: commit: texto2
+cf925f9 HEAD@{5}: commit (initial): texto1
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ ls
+texto1  texto2.txt  texto3.txt
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master) /* Comprobamos registros de nuevo */
+$ git reflog
+99866b5 (HEAD -> master) HEAD@{0}: commit: textos 2 y 3
+cf925f9 HEAD@{1}: reset: moving to cf925f9
+29c2925 HEAD@{2}: reset: moving to HEAD
+29c2925 HEAD@{3}: commit: texto3
+8bc0ff1 HEAD@{4}: commit: texto2
+cf925f9 HEAD@{5}: commit (initial): texto1
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master) /* Borramos los ficheros 2 y 3 */
+$ git revert 99866b5
+hint: Waiting for your editor to close the file... unix2dos: converting file C:/revertreset/.git/COMMIT_EDITMSG to DOS format...
+dos2unix: converting file C:/revertreset/.git/COMMIT_EDITMSG to Unix format...
+[master 189968f] Revert "textos 2 y 3"
+ 2 files changed, 2 deletions(-)
+ delete mode 100644 texto2.txt
+ delete mode 100644 texto3.txt
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ git log --oneline
+189968f (HEAD -> master) Revert "textos 2 y 3"
+99866b5 textos 2 y 3
+cf925f9 texto1
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master) /* Listamos archivos y comprobamos que se borraron */
+$ ls
+texto1
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master) /* Deshacemos el revert para recuperar los archivos */
+$ git revert 189968f
+hint: Waiting for your editor to close the file... unix2dos: converting file C:/revertreset/.git/COMMIT_EDITMSG to DOS format...
+dos2unix: converting file C:/revertreset/.git/COMMIT_EDITMSG to Unix format...
+[master 152da5c] Reapply "textos 2 y 3"
+ 2 files changed, 2 insertions(+)
+ create mode 100644 texto2.txt
+ create mode 100644 texto3.txt
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master) /* Listamos archivos y vemos que los hemos recuperado */
+$ ls
+texto1  texto2.txt  texto3.txt
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ git log --oneline
+152da5c (HEAD -> master) Reapply "textos 2 y 3"
+189968f Revert "textos 2 y 3"
+99866b5 textos 2 y 3
+cf925f9 texto1
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ git reflog
+152da5c (HEAD -> master) HEAD@{0}: revert: Reapply "textos 2 y 3"
+189968f HEAD@{1}: revert: Revert "textos 2 y 3"
+99866b5 HEAD@{2}: commit: textos 2 y 3
+cf925f9 HEAD@{3}: reset: moving to cf925f9
+29c2925 HEAD@{4}: reset: moving to HEAD
+29c2925 HEAD@{5}: commit: texto3
+8bc0ff1 HEAD@{6}: commit: texto2
+cf925f9 HEAD@{7}: commit (initial): texto1
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ git clone https://github.com/carballofranceschini/ASXBD.git
+Cloning into 'ASXBD'...
+remote: Enumerating objects: 14, done.
+remote: Counting objects: 100% (14/14), done.
+remote: Compressing objects: 100% (11/11), done.
+remote: Total 14 (delta 3), reused 14 (delta 3), pack-reused 0 (from 0)
+Receiving objects: 100% (14/14), 14.87 KiB | 608.00 KiB/s, done.
+Resolving deltas: 100% (3/3), done.
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ ls
+ASXBD/  texto1  texto2.txt  texto3.txt
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master) /* Comprobamos estado */
+$ git status
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        ASXBD/
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master) /* Añadimos los archivos */
+$ git add .
+warning: adding embedded git repository: ASXBD
+hint: You've added another git repository inside your current repository.
+hint: Clones of the outer repository will not contain the contents of
+hint: the embedded repository and will not know how to obtain it.
+hint: If you meant to add a submodule, use:
+hint:
+hint:   git submodule add <url> ASXBD
+hint:
+hint: If you added this path by mistake, you can remove it from the
+hint: index with:
+hint:
+hint:   git rm --cached ASXBD
+hint:
+hint: See "git help submodule" for more information.
+hint: Disable this message with "git config set advice.addEmbeddedRepo false"
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master) /* Hacemos commit */
+$ git commit -m "Commit clone"
+[master 9c5a340] Commit clone
+ 1 file changed, 1 insertion(+)
+ create mode 160000 ASXBD
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master) /* Actualizamos el repositorio remoto */
+$ git remote set-url origin https://github.com/carballofranceschini/revertreset.git
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ git remote -v
+origin  https://github.com/carballofranceschini/revertreset.git (fetch)
+origin  https://github.com/carballofranceschini/revertreset.git (push)
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ git push -u origin master
+Enumerating objects: 11, done.
+Counting objects: 100% (11/11), done.
+Delta compression using up to 2 threads
+Compressing objects: 100% (7/7), done.
+Writing objects: 100% (11/11), 1.01 KiB | 517.00 KiB/s, done.
+Total 11 (delta 3), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (3/3), done.
+To https://github.com/carballofranceschini/revertreset.git
+ * [new branch]      master -> master
+branch 'master' set up to track 'origin/master'.
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master) /* Añado texto al documento */
+$ nano texto2
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 2 commits.
+  (use "git push" to publish your local commits)
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        texto2
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ git add .
+warning: in the working copy of 'texto2', LF will be replaced by CRLF the next time Git touches it
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 2 commits.
+  (use "git push" to publish your local commits)
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   texto2
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ git commit -m "añado texto en texto2"
+[master 897de5d] añado texto en texto2
+ 1 file changed, 2 insertions(+)
+ create mode 100644 texto2
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ git log --oneline
+897de5d (HEAD -> master) añado texto en texto2
+8ad91e0 Resuelto conflicto en texto1
+e50381c Corrijo error
+6685c72 (origin/master, origin/HEAD) Update texto1
+9abe14b Actualización desde GitHub
+188aafa git pull
+9c5a340 Commit clone
+152da5c Reapply "textos 2 y 3"
+189968f Revert "textos 2 y 3"
+99866b5 textos 2 y 3
+cf925f9 texto1
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ git remote -v
+origin  https://github.com/carballofranceschini/revertreset.git (fetch)
+origin  https://github.com/carballofranceschini/revertreset.git (push)
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master) /* Sincronizamos cambios con el repositorio remoto */
+$ git push -u origin master
+Enumerating objects: 13, done.
+Counting objects: 100% (13/13), done.
+Delta compression using up to 2 threads
+Compressing objects: 100% (9/9), done.
+Writing objects: 100% (9/9), 956 bytes | 956.00 KiB/s, done.
+Total 9 (delta 3), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (3/3), completed with 2 local objects.
+To https://github.com/carballofranceschini/revertreset.git
+   6685c72..897de5d  master -> master
+branch 'master' set up to track 'origin/master'.
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master) /* Sincronizamos cambios con el repositorio local, de modo que nos aparezcan en él los cambios realizados en remoto */
+$ git pull
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 3 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+Unpacking objects: 100% (3/3), 950 bytes | 45.00 KiB/s, done.
+From https://github.com/carballofranceschini/revertreset
+   897de5d..5320c3c  master     -> origin/master
+Updating 897de5d..5320c3c
+Fast-forward
+ texto2 | 1 +
+ 1 file changed, 1 insertion(+)
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master)
+$ git log --oneline
+5320c3c (HEAD -> master, origin/master, origin/HEAD) Update texto2
+897de5d añado texto en texto2
+8ad91e0 Resuelto conflicto en texto1
+e50381c Corrijo error
+6685c72 Update texto1
+9abe14b Actualización desde GitHub
+188aafa git pull
+9c5a340 Commit clone
+152da5c Reapply "textos 2 y 3"
+189968f Revert "textos 2 y 3"
+99866b5 textos 2 y 3
+cf925f9 texto1
+
+maqui@ASXBD_LCF MINGW64 /c/revertreset (master) /* Comprobamos los cambios */
+$ nano texto2
